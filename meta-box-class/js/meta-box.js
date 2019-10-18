@@ -24,6 +24,11 @@ jQuery(document).ready(function($) {
     });
   });
 });
+$('.tr-display-casino-item .at-repater-block').each(function(index, el) {
+  var html = $('.input-info',el).html();
+  var text = $('.input-info',el).parent().find('.repeater-table .at-posts-select option[value="'+html+'"]').text();
+  $('.input-info',el).html(text);
+});
 function update_repeater_fields(){
     _metabox_fields.init();
 }
@@ -43,7 +48,8 @@ var _metabox_fields = {
 
     // repater Field
     $(".at-re-toggle").live('click', function() {
-      $(this).parent().find('.repeater-table').toggle('slow');
+      $(this).parent().find('.repeater-table').toggle();
+      return false;
     });
     // repeater sortable
     $('.repeater-sortable').sortable({
@@ -56,11 +62,11 @@ var _metabox_fields = {
     //$('.repeater-sortable').sortable( "option", "handle", ".at_re_sort_handle" );
   },
   fancySelect: function(){
-    if ($().select2){
-      $(".at-select, .at-posts-select, .at-tax-select").each(function (){
-        if(! $(this).hasClass('no-fancy'))
-          $(this).select2();
-      });
+    if ($(".at-select, .at-posts-select, .at-tax-select").length > 0){
+      // $(".at-select, .at-posts-select, .at-tax-select").each(function (){
+      //   if(! $(this).hasClass('no-fancy'))
+      //     $(this).select2();
+      // });
     }  
   },
   get_query_var: function(name){
